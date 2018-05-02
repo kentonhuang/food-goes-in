@@ -8,7 +8,7 @@ import MoreFilters from './MoreFilters';
 
 class SearchBar extends Component {
 
-	state = { 
+	state = {
 			term: '',
 			location: '',
 			latitude: '',
@@ -66,7 +66,7 @@ class SearchBar extends Component {
 	}
 
 	showMoreFilters = () => {
-		this.setState({ 
+		this.setState({
 			showFilters: !this.state.showFilters
 		})
 	}
@@ -83,11 +83,10 @@ class SearchBar extends Component {
 			})
 		}
 
-		
+
 	}
 
 	render() {
-		console.log(this.state);
 		return (
 			<div className="search-bar-container">
 				<div className="search-bar">
@@ -129,7 +128,7 @@ class SearchBar extends Component {
 							/>
 						</CSSTransition>
 				</div>
-				
+
 			</div>
 		);
 	}
