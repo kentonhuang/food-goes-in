@@ -27,7 +27,6 @@ app.get('/api/test', (req, res) => {
 	let price = req.query.price;
 	let open_now = req.query.open_now;
 	let distance = req.query.distance;
-	console.log(req.query);
 
 	client.search({
 		term,
@@ -49,8 +48,6 @@ app.get('/api/test2', (req, res) => {
 	let price = req.query.price;
 	let open_now = req.query.open_now;
 	let distance = req.query.distance;
-	console.log(req.query);
-
 
 	client.search({
 		term,

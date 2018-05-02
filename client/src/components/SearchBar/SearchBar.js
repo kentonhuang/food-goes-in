@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import '../../index.css';
 import { connect } from 'react-redux';
 import { yelpSearchLatLng, yelpSearchLocation } from '../../actions/index'
