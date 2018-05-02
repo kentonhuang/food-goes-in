@@ -2,16 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const yelp = require('yelp-fusion')
+const config = require('./config/config').get(process.env.NODE_ENV);
 
 const app = express();
 
 app.use(bodyParser.json());
 
-const API_KEY = 'kv2SXo2kqTdnhXCwQyrkmPUOdnYTvUTFjvpFoot22iy-XBVIvJ-oovs-YdY4FMZp3_UMAyY6bLT7CznFp6XB74VWGJ7-edkN1v-f3pDiMm3FuhogxaTvDOdKQdS2WnYx'
+const auth = 'Bearer '.concat(config.YELP_KEY);
 
-const auth = 'Bearer '.concat(API_KEY);
-
-const client = yelp.client(API_KEY);
+const client = yelp.client(config.YELP_KEY);
 
 // axios.get('https://api.yelp.com/v3/businesses/search?term=food&latitude=37.786882&longitude=-122.399972', { headers: { Authorization: auth }})
 // 	.then(res => {
