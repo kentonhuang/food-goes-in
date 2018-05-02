@@ -8,6 +8,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.use(express.static('client/build'))
+
 const auth = 'Bearer '.concat(config.YELP_KEY);
 
 const client = yelp.client(config.YELP_KEY);
@@ -39,7 +41,7 @@ app.get('/api/test', (req, res) => {
 	}).then(response => {
 		res.json(response.jsonBody);
 	})
-	
+
 })
 
 app.get('/api/test2', (req, res) => {
@@ -61,6 +63,14 @@ app.get('/api/test2', (req, res) => {
 	})
 
 })
+
+if(process.env.NODE_ENV === 'production'){
+    const path = require('path');
+    app.get('/*',(req,res)=>{
+        res.sendfile(path.resolve(__dirname,'../client','build','index.html'))
+    })
+}
+
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
