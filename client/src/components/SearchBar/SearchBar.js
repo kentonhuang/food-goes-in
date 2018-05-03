@@ -82,7 +82,7 @@ class SearchBar extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(!nextProps.location.location instanceof Error) {
+		if(!(nextProps.location.location instanceof Error)) {
 			this.setState({
 					latitude: nextProps.location.location.coords.latitude,
 					longitude: nextProps.location.location.coords.longitude,
