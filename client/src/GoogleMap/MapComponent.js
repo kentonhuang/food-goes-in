@@ -23,7 +23,6 @@ class MapComponent extends Component {
 	}
 	
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
 		if (!(nextProps.location.location instanceof Error) && nextProps.location.location !== this.props.location.location && this.state.firstPan === false) {
 			this.centerMap(nextProps.location.location.coords)
 			this.setState({firstPan: true})
