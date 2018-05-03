@@ -4,7 +4,6 @@ import mapStyle from './styleMap.json';
 import { getLocation } from '../actions/location_actions';
 import { connect } from 'react-redux';
 import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
-import GeolocationMarker from 'geolocation-marker';
 import '../index.css'
 
 const google = window.google;
