@@ -78,6 +78,28 @@ input:focus {
 	background-color: #fff	;
 }
 
+.location {
+	margin-top: -5px;
+	padding: 0;
+}
+
+.location-input {
+	width: 100%;
+}
+
+.location-button {
+	font-size: 24px;
+	position: absolute;
+	right: 30px;
+	bottom: 82px;
+	color: #8c1515;
+}
+
+.location-button:hover {
+	color: #540c0c;
+	cursor: pointer;
+}
+
 .more-filters-button {
 	width: 30px;
 	height: 20px;

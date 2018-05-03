@@ -18,12 +18,19 @@ class MapComponent extends Component {
 		zoom: 15,
 		navigation: false,
 		markers: [],
+		firstPan: false,
 
 	}
 	
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.location.location !== this.props.location.location) {
+		console.log(nextProps);
+		if (!(nextProps.location.location instanceof Error) && nextProps.location.location !== this.props.location.location && this.state.firstPan === false) {
 			this.centerMap(nextProps.location.location.coords)
+			this.setState({firstPan: true})
+		}
+
+		if (nextProps.location.location !== this.props.location.location && nextProps.location.location) {
+			this.renderCurrentLocationMarker(nextProps.location.location.coords);
 		}
 
 		if (nextProps.search.search_result) {
@@ -63,6 +70,10 @@ class MapComponent extends Component {
 				<span className="label-category" key={i}>{item.title}</span>
 			)
 		})
+	}
+
+	renderCurrentLocationMarker = (coords) => {
+		// TODO
 	}
 
 	renderMarkers = () => {

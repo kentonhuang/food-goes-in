@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import '../../index.css';
 import { connect } from 'react-redux';
-import { yelpSearchLatLng, yelpSearchLocation } from '../../actions/index'
+import { yelpSearchLatLng, yelpSearchLocation, getLocation } from '../../actions/index'
+import FontAwesome from 'react-fontawesome';
 
 import MoreFilters from './MoreFilters';
 
@@ -75,14 +76,18 @@ class SearchBar extends Component {
 		return arr.filter(e => e !== element)
 	}
 
+	useLocation = () => {
+		this.setState({location: 'Current Location'})
+		this.props.dispatch(getLocation())
+	}
+
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.location.location) {
+		if(!nextProps.location.location instanceof Error) {
 			this.setState({
 					latitude: nextProps.location.location.coords.latitude,
 					longitude: nextProps.location.location.coords.longitude,
 			})
 		}
-
 
 	}
 
@@ -97,12 +102,20 @@ class SearchBar extends Component {
 							placeholder="optional search term"
 							onChange={this.handleInputTerm}
 						/>
-						<input
-							type="text"
-							value={this.state.location}
-							placeholder="Location (Address, Zip, City, etc)"
-							onChange={this.handleInputLocation}
-						/>
+						<div className="location">
+							<input
+								className="location-input"
+								type="text"
+								value={this.state.location}
+								placeholder="Location (Address, Zip, City, etc)"
+								onChange={this.handleInputLocation}
+							/>
+							<span className="location-button" onClick={this.useLocation}>
+							<FontAwesome 
+								name="map-marker"
+							/></span>
+						</div>
+
 						<button className="search-submit" type="submit">
 							Find Random Restaurant
 					</button>
