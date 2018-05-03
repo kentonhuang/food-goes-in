@@ -4,6 +4,7 @@ import mapStyle from './styleMap.json';
 import { getLocation } from '../actions/location_actions';
 import { connect } from 'react-redux';
 import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
+import GeolocationMarker from 'geolocation-marker';
 import '../index.css'
 
 const google = window.google;
@@ -18,18 +19,25 @@ class MapComponent extends Component {
 		zoom: 15,
 		navigation: false,
 		markers: [],
+		geomarker: [],
 		firstPan: false,
 
 	}
 	
 	componentWillReceiveProps(nextProps) {
+		console.log(nextProps);
 		if (!(nextProps.location.location instanceof Error) && nextProps.location.location !== this.props.location.location && this.state.firstPan === false) {
 			this.centerMap(nextProps.location.location.coords)
 			this.setState({firstPan: true})
 		}
 
 		if (nextProps.location.location !== this.props.location.location && nextProps.location.location) {
-			this.renderCurrentLocationMarker(nextProps.location.location.coords);
+			const geomarker = this.state.geomarker
+			if (geomarker.length > 0) {
+				geomarker.pop()
+			}
+			geomarker.push(nextProps.location.location)
+			this.setState({ geomarker })
 		}
 
 		if (nextProps.search.search_result) {
@@ -71,8 +79,20 @@ class MapComponent extends Component {
 		})
 	}
 
-	renderCurrentLocationMarker = (coords) => {
-		// TODO
+	renderCurrentLocationMarker = () => {
+		const geolocation = this.state.geomarker[0].coords
+		return (
+			this.state.geomarker.map((item, i) => {
+				return <Marker 
+					position={{ lat: geolocation.latitude, lng: geolocation.longitude }}
+					key={i}
+					icon={{
+						url: 'https://i.imgur.com/AgxQ2QZ.png',
+						scale: 1
+					}}
+				/>
+			})
+		)
 	}
 
 	renderMarkers = () => {
@@ -139,6 +159,10 @@ class MapComponent extends Component {
 					{ this.state.markers.length > 0 ? 
 						this.renderMarkers() 
 						: null }
+					{ this.state.geomarker.length > 0 ?
+						this.renderCurrentLocationMarker()
+						: null
+					}
 				</GoogleMap>
 			</div>
 		);
