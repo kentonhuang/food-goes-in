@@ -81,6 +81,7 @@ input:focus {
 .location {
 	margin-top: -5px;
 	padding: 0;
+	position: relative;
 }
 
 .location-input {
@@ -90,8 +91,8 @@ input:focus {
 .location-button {
 	font-size: 24px;
 	position: absolute;
-	right: 30px;
-	bottom: 82px;
+	top: 10px;
+	right: 5px;
 	color: #8c1515;
 }
 
