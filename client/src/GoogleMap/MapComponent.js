@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import mapStyle from './styleMap.json';
 import { getLocation } from '../actions/location_actions';
 import { connect } from 'react-redux';
@@ -23,8 +23,7 @@ class MapComponent extends Component {
 
 	}
 	
-	componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
+	componentWillReceiveProps(nextProps) {	
 		if (!(nextProps.location.location instanceof Error) && nextProps.location.location !== this.props.location.location && this.state.firstPan === false) {
 			this.centerMap(nextProps.location.location.coords)
 			this.setState({firstPan: true})
@@ -82,14 +81,18 @@ class MapComponent extends Component {
 		const geolocation = this.state.geomarker[0].coords
 		return (
 			this.state.geomarker.map((item, i) => {
-				return <Marker 
+				return (<Marker 
 					position={{ lat: geolocation.latitude, lng: geolocation.longitude }}
 					key={i}
 					icon={{
-						url: 'https://i.imgur.com/AgxQ2QZ.png',
+						url: 'https://i.imgur.com/ab4ehMo.png',
 						scale: 1
 					}}
-				/>
+				>
+					{<InfoWindow>
+						<div>Your Location</div>
+					</InfoWindow>}
+				</Marker>)
 			})
 		)
 	}
