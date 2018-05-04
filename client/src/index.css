@@ -68,6 +68,15 @@ input:focus {
 	width: 100%;
 	border: 0;
 	background-color: #8c1515;
+	cursor: pointer;
+}
+
+.search-submit:hover {
+	background-color: #701010;
+}
+
+.search-submit:active {
+	background-color: #540c0c;
 }
 
 .restaurant-form-simple input {
@@ -103,7 +112,7 @@ input:focus {
 
 .more-filters-button {
 	width: 30px;
-	height: 20px;
+	height: 25px;
 	background-color: #eee;
 	border: 3px solid #8c1515;
 	border-bottom-left-radius: 20px;
@@ -112,22 +121,24 @@ input:focus {
 	border-top-right-radius: 5px;
 	margin-left: 5px;
 	margin-top: 5px;
+	overflow: hidden;
+	transition: width 1s;
+	white-space: nowrap;
+	font-weight: bold;
+	color: #333;
 }
 
 .more-filters-button:hover {
 	background-color: #ddd;
+	width: 100px;
+}
+
+.more-filters-button:hover::after {
+	content: 'More Filters';
 }
 
 .more-filters-button:active {
 	background-color: #aaa;
-}
-
-.more-filters-text {
-	visibility: hidden;
-}
-
-.more-filters-text:hover {
-	visibility: visible;
 }
 
 .more-filters-container {
@@ -141,12 +152,12 @@ input:focus {
 
   .fade-enter {
 		opacity: 0.01;
-		transform: translateY(-30px)
+		/*transform: translateY(-30px)*/
   }
 
   .fade-enter.fade-enter-active {
 		opacity: 1;
-		transform: translateY(0);
+		/*transform: translateY(0);*/
   	transition: all 300ms ease-in;
   }
 

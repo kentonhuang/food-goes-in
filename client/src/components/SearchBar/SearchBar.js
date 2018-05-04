@@ -124,7 +124,8 @@ class SearchBar extends Component {
 				<button className="more-filters-button"
 					onClick={this.showMoreFilters}
 				>
-					<span className="more-filters-text">Text</span>
+					{//<span className="more-filters-text">Text</span>
+					}
 				</button>
 				<div>
 						<CSSTransition
