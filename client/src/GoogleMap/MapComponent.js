@@ -122,6 +122,7 @@ class MapComponent extends Component {
 								<div className="label label-address">{this.mapAddress(item.location.display_address)}</div>
 								<div className="label-phone">{item.phone}</div>
 								<div className="label-distance">{(item.distance * 0.000621371).toFixed(1)} miles</div>
+								<a href={item.url} target="_blank" className="label-yelp">Open In Yelp</a>
 							</div>
 							<div className="right">
 								<img src={item.image_url} alt="" />

@@ -64,11 +64,12 @@ input:focus {
 	border-radius: 5px;
 	color: #fff;
 	height: 20px;
-	align-self: center;
 	width: 100%;
 	border: 0;
 	background-color: #8c1515;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
 }
 
 .search-submit:hover {
@@ -77,6 +78,9 @@ input:focus {
 
 .search-submit:active {
 	background-color: #540c0c;
+}
+
+.loader {
 }
 
 .restaurant-form-simple input {
@@ -222,8 +226,18 @@ input:focus {
 	content: ", ";
 }
 
-.label-review-price{
-	
+.label-yelp {
+	position: absolute;
+	bottom: 15px;
+	left: 110px;
+	text-decoration: none;
+	background-color: #8c1515;
+	width: 100px;
+	height: 30px;
+	padding: 7px 10px;
+	font-size: 14px;
+	border-radius: 10px;
+	color: #fff;
 }
 
 .marker-label {

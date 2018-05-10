@@ -15,6 +15,7 @@
   "description": "",
   "dependencies": {
     "axios": "^0.18.0",
+    "better-react-spinkit": "^2.0.4",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
     "express": "^4.16.3",
@@ -23,6 +24,7 @@
     "react-geolocated": "^2.3.1",
     "react-google-maps": "^9.4.5",
     "react-redux": "^5.0.7",
+    "react-spinner": "^0.2.7",
     "redux": "^4.0.0",
     "yelp-fusion": "^2.0.3"
   }

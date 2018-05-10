@@ -4,6 +4,7 @@ import '../../index.css';
 import { connect } from 'react-redux';
 import { yelpSearchLatLng, yelpSearchLocation, getLocation } from '../../actions/index'
 import FontAwesome from 'react-fontawesome';
+import { ThreeBounce } from 'better-react-spinkit';
 
 import MoreFilters from './MoreFilters';
 
@@ -18,6 +19,7 @@ class SearchBar extends Component {
 			openNow: false,
 			price: [],
 			showFilters: false,
+			loading: false,
 	}
 
 	handleInputTerm = (event) => {
@@ -31,9 +33,11 @@ class SearchBar extends Component {
 	submitForm = (e) => {
 		e.preventDefault();
 		if(this.state.location === 'Current Location') {
+			this.setState({ loading: true })
 			this.props.dispatch(yelpSearchLatLng(this.state.term, this.state.latitude, this.state.longitude, this.state.distance, this.state.openNow, this.state.price))
 		}
-		else if(this.state.location !== 'Current Location') {
+		else if(this.state.location !== 'Current Location' && this.state.location !== '') {
+			this.setState({ loading: true })
 			this.props.dispatch(yelpSearchLocation(this.state.term, this.state.location, this.state.distance, this.state.openNow, this.state.price))
 		}
 	}
@@ -66,6 +70,21 @@ class SearchBar extends Component {
 		}
 	}
 
+	renderSearchButtonText() {
+		if(this.state.loading) {
+			return (
+				<ThreeBounce 
+					color="white"
+				/>
+			)
+		}
+		else if(!this.state.loading) {
+			return (
+				"Find Random Restaurant"
+			)
+		}
+	}
+
 	showMoreFilters = () => {
 		this.setState({
 			showFilters: !this.state.showFilters
@@ -82,6 +101,7 @@ class SearchBar extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		this.setState({ loading: false })
 		if(!(nextProps.location.location instanceof Error)) {
 			this.setState({
 					latitude: nextProps.location.location.coords.latitude,
@@ -117,7 +137,9 @@ class SearchBar extends Component {
 						</div>
 
 						<button className="search-submit" type="submit">
-							Find Random Restaurant
+							<div className="loader">
+								{this.renderSearchButtonText()}
+							</div>
 					</button>
 					</form>
 				</div>
